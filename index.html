@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Madam Ji ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffd6e7, #eadcff, #ffeaf3);
+            overflow-x: hidden;
+            color: #4a2940;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 25px;
+            animation: float 7s linear infinite;
+            opacity: 0.7;
+            z-index: 0;
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 1s; }
+        .heart:nth-child(2) { left: 30%; animation-delay: 3s; }
+        .heart:nth-child(3) { left: 50%; animation-delay: 0s; }
+        .heart:nth-child(4) { left: 70%; animation-delay: 2s; }
+        .heart:nth-child(5) { left: 90%; animation-delay: 4s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main Card */
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 92%;
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 35px 25px;
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(12px);
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(120, 60, 100, 0.20);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .crown {
+            font-size: 42px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #80506e;
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .photo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9fc7, #b99cff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            box-shadow: 0 8px 25px rgba(214,51,132,0.25);
+        }
+
+        /* Letter */
+        .letter {
+            background: #fff8fc;
+            border-radius: 22px;
+            padding: 25px;
+            text-align: left;
+            line-height: 1.8;
+            font-size: 16px;
+            box-shadow: inset 0 0 15px rgba(214,51,132,0.08);
+            border: 1px solid #ffd5e8;
+        }
+
+        .letter h2 {
+            text-align: center;
+            color: #c2185b;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        /* Button */
+        .love-btn {
+            margin-top: 25px;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4f91, #c85cff);
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(200,70,150,0.25);
+            transition: 0.3s;
+        }
+
+        .love-btn:hover {
+            transform: scale(1.05);
+        }
+
+        #reply {
+            display: none;
+            margin-top: 20px;
+            padding: 18px;
+            background: #fff0f7;
+            border-radius: 18px;
+            color: #c2185b;
+            font-weight: bold;
+        }
+
+        /* Social Buttons */
+        .social {
+            margin-top: 30px;
+        }
+
+        .social h3 {
+            margin-bottom: 15px;
+            color: #713f63;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .social-buttons a:hover {
+            transform: translateY(-3px);
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #feda75, #d62976, #4f5bd5);
+        }
+
+        .snapchat {
+            background: #f5d900;
+            color: #222 !important;
+        }
+
+        .whatsapp {
+            background: #25D366;
+        }
+
+        footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #906b83;
+        }
+
+        @media(max-width: 500px) {
+            h1 {
+                font-size: 31px;
+            }
+
+            .container {
+                margin: 30px auto;
+                padding: 28px 18px;
+            }
+
+            .letter {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating Hearts -->
+    <div class="heart">❤️</div>
+    <div class="heart">💗</div>
+    <div class="heart">💕</div>
+    <div class="heart">💖</div>
+    <div class="heart">💜</div>
+
+    <div class="container">
+
+        <div class="crown">👑</div>
+
+        <h1>Madam Ji ❤️</h1>
+
+        <p class="subtitle">
+            Ek baat hai jo kaafi time se dil mein hai...
+        </p>
+
+        <div class="photo">
+            🌸
+        </div>
+
+        <div class="letter">
+
+            <h2>Dear Madam Ji 💌</h2>
+
+            <p>
+                Pata nahi ye baat kaise kahun,
+                isliye socha jo dil mein hai wahi likh deta hoon।
+            </p>
+
+            <p>
+                Aapse baat karna mujhe hamesha achha lagta hai।
+                Dheere-dheere pata hi nahi chala ki
+                <span class="highlight">aap mere liye itni special kab ban gayi.</span>
+            </p>
+
+            <p>
+                Main aapse kisi jawab ki zabardasti nahi karna chahta।
+                Bas apne dil ki baat aap tak pahunchani thi।
+            </p>
+
+            <p>
+                <span class="highlight">
+                    I really like you, Madam Ji. ❤️
+                </span>
+            </p>
+
+            <p>
+                Aap jo bhi feel karti hain,
+                main uski respect karunga। 🌸
+            </p>
+
+        </div>
+
+        <button class="love-btn" onclick="showMessage()">
+            💖 Ek baat aur...
+        </button>
+
+        <div id="reply">
+            चाहे जवाब "हाँ" हो या "ना",
+            आपकी सच्चाई मेरे लिए हमेशा मायने रखेगी। ❤️
+        </div>
+
+
+        <div class="social">
+
+            <h3>💌 Connect With Me</h3>
+
+            <div class="social-buttons">
+
+                <!-- Instagram -->
+                <a class="instagram"
+                   href="YOUR_INSTAGRAM_LINK"
+                   target="_blank">
+                    📷 Instagram
+                </a>
+
+                <!-- Snapchat -->
+                <a class="snapchat"
+                   href="YOUR_SNAPCHAT_LINK"
+                   target="_blank">
+                    👻 Snapchat
+                </a>
+
+                <!-- WhatsApp -->
+                <a class="whatsapp"
+                   href="https://wa.me/YOUR_NUMBER"
+                   target="_blank">
+                    💬 WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+        <footer>
+            Made with ❤️ just for Madam Ji
+        </footer>
+
+    </div>
+
+
+    <script>
+
+        function showMessage() {
+
+            const message = document.getElementById("reply");
+
+            if (message.style.display === "none" ||
+                message.style.display === "") {
+
+                message.style.display = "block";
+
+            } else {
+
+                message.style.display = "none";
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
