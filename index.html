@@ -1,342 +1,668 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Madam Ji ❤️</title>
+<title>Madam Ji ❤️</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Segoe UI", sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #ffd6e7, #eadcff, #ffeaf3);
-            overflow-x: hidden;
-            color: #4a2940;
-        }
+html,body{
+    width:100%;
+    min-height:100%;
+}
 
-        /* Floating Hearts */
-        .heart {
-            position: fixed;
-            bottom: -30px;
-            font-size: 25px;
-            animation: float 7s linear infinite;
-            opacity: 0.7;
-            z-index: 0;
-        }
+body{
+    font-family:Georgia,"Times New Roman",serif;
+    background:#09000d;
+    color:white;
+    overflow:hidden;
+}
 
-        .heart:nth-child(1) { left: 10%; animation-delay: 1s; }
-        .heart:nth-child(2) { left: 30%; animation-delay: 3s; }
-        .heart:nth-child(3) { left: 50%; animation-delay: 0s; }
-        .heart:nth-child(4) { left: 70%; animation-delay: 2s; }
-        .heart:nth-child(5) { left: 90%; animation-delay: 4s; }
+/* =========================
+   FALLING HEARTS
+========================= */
 
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+.hearts{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:1;
+}
 
-        /* Main Card */
-        .container {
-            position: relative;
-            z-index: 2;
-            width: 92%;
-            max-width: 600px;
-            margin: 60px auto;
-            padding: 35px 25px;
-            background: rgba(255,255,255,0.72);
-            backdrop-filter: blur(12px);
-            border-radius: 30px;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(120, 60, 100, 0.20);
-            border: 1px solid rgba(255,255,255,0.8);
-        }
+.heart{
+    position:absolute;
+    top:-40px;
+    font-size:18px;
+    opacity:.7;
+    animation:heartFall linear infinite;
+}
 
-        .crown {
-            font-size: 42px;
-            margin-bottom: 5px;
-        }
+.heart:nth-child(1){left:5%;animation-duration:7s;animation-delay:0s}
+.heart:nth-child(2){left:16%;animation-duration:9s;animation-delay:2s}
+.heart:nth-child(3){left:28%;animation-duration:6s;animation-delay:1s}
+.heart:nth-child(4){left:40%;animation-duration:8s;animation-delay:3s}
+.heart:nth-child(5){left:53%;animation-duration:7s;animation-delay:1s}
+.heart:nth-child(6){left:67%;animation-duration:10s;animation-delay:4s}
+.heart:nth-child(7){left:79%;animation-duration:6s;animation-delay:2s}
+.heart:nth-child(8){left:91%;animation-duration:8s;animation-delay:0s}
+.heart:nth-child(9){left:35%;animation-duration:11s;animation-delay:5s}
+.heart:nth-child(10){left:73%;animation-duration:9s;animation-delay:6s}
 
-        h1 {
-            color: #d63384;
-            font-size: 38px;
-            margin-bottom: 8px;
-        }
+@keyframes heartFall{
+    0%{
+        transform:translateY(-50px) rotate(0deg);
+        opacity:0;
+    }
 
-        .subtitle {
-            color: #80506e;
-            font-size: 17px;
-            margin-bottom: 25px;
-        }
+    15%{
+        opacity:.8;
+    }
 
-        .photo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 25px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ff9fc7, #b99cff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 55px;
-            box-shadow: 0 8px 25px rgba(214,51,132,0.25);
-        }
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
 
-        /* Letter */
-        .letter {
-            background: #fff8fc;
-            border-radius: 22px;
-            padding: 25px;
-            text-align: left;
-            line-height: 1.8;
-            font-size: 16px;
-            box-shadow: inset 0 0 15px rgba(214,51,132,0.08);
-            border: 1px solid #ffd5e8;
-        }
+/* =========================
+   PAGE
+========================= */
 
-        .letter h2 {
-            text-align: center;
-            color: #c2185b;
-            margin-bottom: 15px;
-        }
+.page{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:18px;
+    overflow-y:auto;
+    z-index:2;
+}
 
-        .highlight {
-            color: #d63384;
-            font-weight: bold;
-        }
+.page.active{
+    display:flex;
+    animation:pageIn .7s ease;
+}
 
-        /* Button */
-        .love-btn {
-            margin-top: 25px;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 50px;
-            background: linear-gradient(135deg, #ff4f91, #c85cff);
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(200,70,150,0.25);
-            transition: 0.3s;
-        }
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:scale(.96);
+    }
 
-        .love-btn:hover {
-            transform: scale(1.05);
-        }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
 
-        #reply {
-            display: none;
-            margin-top: 20px;
-            padding: 18px;
-            background: #fff0f7;
-            border-radius: 18px;
-            color: #c2185b;
-            font-weight: bold;
-        }
+/* =========================
+   PAGE 1
+========================= */
 
-        /* Social Buttons */
-        .social {
-            margin-top: 30px;
-        }
+.page1{
+    background:
+        radial-gradient(circle at 50% 35%,#ff9e9e 0%,transparent 32%),
+        linear-gradient(
+            to bottom,
+            #35113d 0%,
+            #d94c8b 38%,
+            #ff9c8e 60%,
+            #402047 100%
+        );
+}
 
-        .social h3 {
-            margin-bottom: 15px;
-            color: #713f63;
-        }
+.sun{
+    position:absolute;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#ffd58a;
+    box-shadow:0 0 45px #ffcf8a;
+    top:43%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    opacity:.9;
+}
 
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+.water{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:28%;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,180,180,.12) 0px,
+            rgba(255,180,180,.12) 2px,
+            transparent 2px,
+            transparent 8px
+        ),
+        linear-gradient(to bottom,#432052,#120c22);
+}
 
-        .social-buttons a {
-            text-decoration: none;
-            color: white;
-            padding: 11px 18px;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
+.person{
+    position:absolute;
+    bottom:19%;
+    left:50%;
+    transform:translateX(-50%);
+    width:22px;
+    height:90px;
+    background:#08060b;
+    border-radius:12px 12px 4px 4px;
+}
 
-        .social-buttons a:hover {
-            transform: translateY(-3px);
-        }
+.person:before{
+    content:"";
+    position:absolute;
+    width:28px;
+    height:28px;
+    background:#08060b;
+    border-radius:50%;
+    top:-24px;
+    left:-3px;
+}
 
-        .instagram {
-            background: linear-gradient(45deg, #feda75, #d62976, #4f5bd5);
-        }
+.person:after{
+    content:"";
+    position:absolute;
+    width:55px;
+    height:8px;
+    background:#08060b;
+    left:-16px;
+    bottom:0;
+    border-radius:50%;
+}
 
-        .snapchat {
-            background: #f5d900;
-            color: #222 !important;
-        }
+.lamp{
+    position:absolute;
+    right:13%;
+    bottom:18%;
+    width:6px;
+    height:105px;
+    background:#171017;
+}
 
-        .whatsapp {
-            background: #25D366;
-        }
+.lamp:before{
+    content:"";
+    position:absolute;
+    top:-18px;
+    left:-13px;
+    width:32px;
+    height:25px;
+    background:#19121a;
+    border-radius:50% 50% 10% 10%;
+    box-shadow:0 0 20px #ffc47b;
+}
 
-        footer {
-            margin-top: 28px;
-            font-size: 13px;
-            color: #906b83;
-        }
+.openCard{
+    position:relative;
+    z-index:5;
+    width:100%;
+    max-width:400px;
+    text-align:center;
+    padding:30px 22px;
+    margin-top:-40px;
+}
 
-        @media(max-width: 500px) {
-            h1 {
-                font-size: 31px;
-            }
+.openCard h1{
+    font-size:42px;
+    color:#9c165a;
+    text-shadow:0 2px 4px rgba(255,255,255,.3);
+    margin-bottom:22px;
+    font-style:italic;
+}
 
-            .container {
-                margin: 30px auto;
-                padding: 28px 18px;
-            }
+.openCard p{
+    font-size:17px;
+    color:#49182f;
+    margin-bottom:25px;
+}
 
-            .letter {
-                padding: 20px;
-            }
-        }
-    </style>
+.openBtn,
+.nextBtn{
+    border:none;
+    padding:15px 27px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#ed1971,#bd1b78);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    box-shadow:0 5px 25px rgba(255,30,130,.45);
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+        box-shadow:0 5px 20px rgba(255,30,130,.35);
+    }
+    50%{
+        transform:scale(1.05);
+        box-shadow:0 5px 32px rgba(255,30,130,.7);
+    }
+}
+
+/* =========================
+   PAGE 2
+========================= */
+
+.page2{
+    background:
+        radial-gradient(circle at 50% 20%,#ff418d 0%,transparent 18%),
+        radial-gradient(circle at 10% 80%,#73105f 0%,transparent 25%),
+        linear-gradient(135deg,#160019,#3b063c,#100014);
+}
+
+.glow{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#ff8bc5;
+    box-shadow:0 0 12px #ff8bc5;
+    animation:sparkle 2s infinite alternate;
+}
+
+.glow:nth-child(1){top:18%;left:15%}
+.glow:nth-child(2){top:25%;right:17%}
+.glow:nth-child(3){top:45%;left:7%}
+.glow:nth-child(4){top:60%;right:9%}
+
+@keyframes sparkle{
+    from{opacity:.2;transform:scale(.6)}
+    to{opacity:1;transform:scale(1.5)}
+}
+
+.letter{
+    position:relative;
+    width:100%;
+    max-width:400px;
+    background:
+        linear-gradient(
+            135deg,
+            #fff5ec,
+            #ffe8df
+        );
+    color:#492335;
+    padding:34px 24px 25px;
+    border-radius:6px;
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.5),
+        0 0 25px rgba(255,100,180,.2);
+    transform:rotate(-1deg);
+}
+
+.letter:before{
+    content:"";
+    position:absolute;
+    inset:7px;
+    border:1px solid rgba(150,50,80,.18);
+    pointer-events:none;
+}
+
+.letterHeart{
+    position:absolute;
+    top:-23px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:45px;
+    filter:drop-shadow(0 5px 8px rgba(0,0,0,.2));
+}
+
+.letter h2{
+    text-align:center;
+    color:#8e285d;
+    font-size:28px;
+    font-style:italic;
+    margin-bottom:22px;
+}
+
+.letter h2 span{
+    display:block;
+    font-size:18px;
+    margin-top:4px;
+}
+
+.letter p{
+    font-family:Arial,sans-serif;
+    font-size:15px;
+    line-height:1.65;
+    margin-bottom:13px;
+}
+
+.special{
+    color:#a52b68;
+    font-weight:bold;
+}
+
+.letterBottom{
+    text-align:center;
+    font-size:25px;
+    margin-top:5px;
+}
+
+/* =========================
+   PAGE 3
+========================= */
+
+.page3{
+    background:
+        radial-gradient(circle at 50% 30%,#8c115f 0%,transparent 27%),
+        radial-gradient(circle at 80% 75%,#4d063e 0%,transparent 30%),
+        linear-gradient(135deg,#09000d,#260020,#08000c);
+}
+
+.finalCard{
+    width:100%;
+    max-width:390px;
+    text-align:center;
+    padding:30px 24px;
+}
+
+.bigHeart{
+    font-size:70px;
+    color:#ff4f9c;
+    text-shadow:
+        0 0 10px #ff4f9c,
+        0 0 35px #ff197f;
+    animation:heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.13)}
+}
+
+.finalCard h2{
+    color:#ff9acb;
+    font-size:31px;
+    font-style:italic;
+    margin:12px 0 25px;
+}
+
+.finalMessage{
+    background:rgba(100,0,75,.35);
+    border:1px solid rgba(255,70,170,.45);
+    border-radius:10px;
+    padding:20px 16px;
+    box-shadow:0 0 20px rgba(255,0,150,.15);
+}
+
+.finalMessage p{
+    font-family:Arial,sans-serif;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.whatsapp{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-top:28px;
+    padding:16px 27px;
+    border-radius:50px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    font-family:Arial,sans-serif;
+    font-weight:bold;
+    font-size:17px;
+    box-shadow:0 0 25px rgba(37,211,102,.55);
+    animation:whatsappPulse 2s infinite;
+}
+
+.whatsappIcon{
+    font-size:28px;
+}
+
+@keyframes whatsappPulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.06);
+    }
+}
+
+.thanks{
+    margin-top:25px;
+    color:#ff9acb;
+    font-style:italic;
+    font-size:16px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-height:700px){
+
+    .openCard h1{
+        font-size:34px;
+    }
+
+    .openCard{
+        margin-top:-20px;
+    }
+
+    .letter{
+        padding:28px 20px 20px;
+    }
+
+    .letter p{
+        font-size:14px;
+        line-height:1.5;
+        margin-bottom:9px;
+    }
+
+    .letter h2{
+        font-size:25px;
+        margin-bottom:15px;
+    }
+
+    .finalCard{
+        padding:20px;
+    }
+
+    .bigHeart{
+        font-size:55px;
+    }
+
+    .finalCard h2{
+        font-size:27px;
+    }
+}
+</style>
 </head>
+
 
 <body>
 
-    <!-- Floating Hearts -->
+<!-- FALLING HEARTS -->
+
+<div class="hearts">
     <div class="heart">❤️</div>
     <div class="heart">💗</div>
     <div class="heart">💕</div>
     <div class="heart">💖</div>
-    <div class="heart">💜</div>
+    <div class="heart">❤️</div>
+    <div class="heart">💗</div>
+    <div class="heart">💕</div>
+    <div class="heart">💖</div>
+    <div class="heart">💗</div>
+    <div class="heart">❤️</div>
+</div>
 
-    <div class="container">
 
-        <div class="crown">👑</div>
+<!-- =========================
+     PAGE 1
+========================= -->
 
-        <h1>Madam Ji ❤️</h1>
+<section class="page page1 active" id="page1">
 
-        <p class="subtitle">
-            Ek baat hai jo kaafi time se dil mein hai...
+    <div class="sun"></div>
+    <div class="water"></div>
+    <div class="person"></div>
+    <div class="lamp"></div>
+
+    <div class="openCard">
+
+        <h1>Madam Ji</h1>
+
+        <p>
+            Ek chhoti si baat kehni hai...
         </p>
 
-        <div class="photo">
-            🌸
-        </div>
-
-        <div class="letter">
-
-            <h2>Dear Madam Ji 💌</h2>
-
-            <p>
-                Pata nahi ye baat kaise kahun,
-                isliye socha jo dil mein hai wahi likh deta hoon।
-            </p>
-
-            <p>
-                Aapse baat karna mujhe hamesha achha lagta hai।
-                Dheere-dheere pata hi nahi chala ki
-                <span class="highlight">aap mere liye itni special kab ban gayi.</span>
-            </p>
-
-            <p>
-                Main aapse kisi jawab ki zabardasti nahi karna chahta।
-                Bas apne dil ki baat aap tak pahunchani thi।
-            </p>
-
-            <p>
-                <span class="highlight">
-                    I really like you, Madam Ji. ❤️
-                </span>
-            </p>
-
-            <p>
-                Aap jo bhi feel karti hain,
-                main uski respect karunga। 🌸
-            </p>
-
-        </div>
-
-        <button class="love-btn" onclick="showMessage()">
-            💖 Ek baat aur...
+        <button class="openBtn" onclick="showPage(2)">
+            💖 Meri Baat Sunogi?
         </button>
-
-        <div id="reply">
-            चाहे जवाब "हाँ" हो या "ना",
-            आपकी सच्चाई मेरे लिए हमेशा मायने रखेगी। ❤️
-        </div>
-
-
-        <div class="social">
-
-            <h3>💌 Connect With Me</h3>
-
-            <div class="social-buttons">
-
-                <!-- Instagram -->
-                <a class="instagram"
-                   href="YOUR_INSTAGRAM_LINK"
-                   target="_blank">
-                    📷 Instagram
-                </a>
-
-                <!-- Snapchat -->
-                <a class="snapchat"
-                   href="YOUR_SNAPCHAT_LINK"
-                   target="_blank">
-                    👻 Snapchat
-                </a>
-
-                <!-- WhatsApp -->
-                <a class="whatsapp"
-                   href="https://wa.me/YOUR_NUMBER"
-                   target="_blank">
-                    💬 WhatsApp
-                </a>
-
-            </div>
-
-        </div>
-
-        <footer>
-            Made with ❤️ just for Madam Ji
-        </footer>
 
     </div>
 
+</section>
 
-    <script>
 
-        function showMessage() {
+<!-- =========================
+     PAGE 2
+========================= -->
 
-            const message = document.getElementById("reply");
+<section class="page page2" id="page2">
 
-            if (message.style.display === "none" ||
-                message.style.display === "") {
+    <div class="glow"></div>
+    <div class="glow"></div>
+    <div class="glow"></div>
+    <div class="glow"></div>
 
-                message.style.display = "block";
+    <div class="letter">
 
-            } else {
+        <div class="letterHeart">💗</div>
 
-                message.style.display = "none";
+        <h2>
+            Madam Ji,
+            <span>━━ ❤️ ━━</span>
+        </h2>
 
-            }
-        }
+        <p>
+            Pata nahi kaise shuru karu...
+            Par jo bhi hai, dil se hai.
+        </p>
 
-    </script>
+        <p>
+            Aap se baat karna, aapki har chhoti
+            chhoti baat ka dhyaan se sunna...
+            mujhe achha lagta hai.
+        </p>
+
+        <p>
+            Aap mere liye <span class="special">
+            bahut special ho.</span>
+            Sach kahu to, aapki respect
+            mere dil me bahut hai.
+        </p>
+
+        <p>
+            Bas yehi kehna tha...
+            Aap khush raho, yahi dua hai.
+        </p>
+
+        <div class="letterBottom">
+            ❤️
+        </div>
+
+        <div style="text-align:center;">
+            <button class="nextBtn" onclick="showPage(3)">
+                💗 Ek Aur Baat...
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 3
+========================= -->
+
+<section class="page page3" id="page3">
+
+    <div class="finalCard">
+
+        <div class="bigHeart">♡</div>
+
+        <h2>
+            Bas ab aapka<br>
+            jawab chahiye ❤️
+        </h2>
+
+        <div class="finalMessage">
+
+            <p>
+                Agar aapke mann me mere liye
+                <b>koi feeling hai,</b>
+                toh WhatsApp pe message kar dijiyega. ❤️
+            </p>
+
+            <br>
+
+            <p>
+                Mai Insta aur Snap delete kar rakha hai.
+                Isliye aapse sirf WhatsApp pe hi
+                baat kar sakta hoon.
+            </p>
+
+        </div>
+
+
+        <!--
+        ===================================
+        APNA WHATSAPP NUMBER YAHAN DALO
+        ===================================
+        -->
+
+        <a
+            class="whatsapp"
+            href="https://wa.me/91XXXXXXXXXX?text=Hi"
+            target="_blank">
+
+            <span class="whatsappIcon">💬</span>
+            WhatsApp Pe<br>Message Karein 💚
+
+        </a>
+
+        <div class="thanks">
+            Thank you so much ❤️✨
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+function showPage(number){
+
+    document.querySelectorAll(".page").forEach(function(page){
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + number)
+        .classList.add("active");
+}
+
+</script>
 
 </body>
-</html>
+            </html>
